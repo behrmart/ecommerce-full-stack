@@ -1,10 +1,11 @@
 // Importar componentes de Chakra UI
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider , extendTheme, ColorModeScript, theme } from '@chakra-ui/react'
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
       <Component {...pageProps} />
     </ChakraProvider>
   )

@@ -20,7 +20,7 @@ const Layout = ({children}) => {
                 align={'center'}
             >
                 <Flex flex={{base: 1}} justify={{base: 'center', md: 'start'}}>
-                    <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>LOGO</Text>
+                    <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>Next.JS FrontEnd</Text>
                 </Flex>
                     <Stack
                         flex={{base:1, md: 0}}
@@ -47,6 +47,7 @@ const Layout = ({children}) => {
             </Flex>
          </Box>
     {children}
+
     </>
   )
 }
