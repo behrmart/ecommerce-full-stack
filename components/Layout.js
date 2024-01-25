@@ -13,13 +13,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
-        <title> E-commerce App </title>
+        <title> FullStack E-commerce App </title>
       </Head>
       <Box>
         {" "}
         {/* BOX ES COMO UN DIV EN CHAKRA UI */}
         <Flex
-          bg={useColorModeValue("white", "gray.600")}
+          //   bg={useColorModeValue("white", "gray.600")}
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
           minH={"60px"}
           // base toma las unidades en 'em' responsive design
           py={{ base: 2 }}
@@ -35,7 +36,7 @@ const Layout = ({ children }) => {
               fontFamily={"heading"}
               color={useColorModeValue("gray.800", "white")}
             >
-              Next.JS FrontEnd
+              Next.JS E-commerce
             </Text>
           </Flex>
           <Stack
@@ -66,7 +67,9 @@ const Layout = ({ children }) => {
           </Stack>
         </Flex>
       </Box>
-      {children}
+      <Box py={{ base: 4 }} px={{ base: 4 }}>
+        {children}
+      </Box>
     </>
   );
 };
