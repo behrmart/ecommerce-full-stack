@@ -6,10 +6,15 @@ import {
   Text,
   Stack,
   Button,
+  useColorMode,
   useColorModeValue,
+  useBreakpointValue,
 } from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Layout = ({ children }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       <Head>
@@ -45,6 +50,9 @@ const Layout = ({ children }) => {
             direction={"row"}
             spacing={6}
           >
+            <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            </Button>
             <Button
               fontSize={"sm"}
               fontWeight={400}

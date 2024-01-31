@@ -1,3 +1,4 @@
 {
+  "env": { "browser": true, "node": true }, // codigo se ejecuta en browser y node
   "extends": "next/core-web-vitals"
 }
