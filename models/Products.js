@@ -8,9 +8,9 @@ const productSchema = new mongoose.Schema(
     price: { type: Number, required: true },
     description: { type: String, required: true },
   },
-  { timestamps: true }
+  { timestamps: true } // sirve para saber cuando un producto (dato) fue creado
 );
 
 const Product =
-  mongoose.model.Product || mongoose.model("Product", productSchema);
+  mongoose.models.Product || mongoose.model("Product", productSchema);
 export default Product;

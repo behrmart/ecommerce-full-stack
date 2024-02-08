@@ -1,5 +1,4 @@
 import Products from "../components/Products";
-import ThemeToggle from "../components/ToggleThemeButton";
 import { useState, useEffect } from "react";
 
 export default function Home() {
@@ -15,17 +14,17 @@ export default function Home() {
     try {
       setLoading(true);
       setError(false);
-      const response = await fetch("http://localhost:3000/api/products");
-      const newProducts = await response.json();
+      const res = await fetch("/api/products");
+      const newProducts = await res.json();
       setProducts(newProducts);
     } catch (err) {
-      setError(err);
+      setError(true);
     }
     setLoading(false);
   }
 
   if (error) {
-    return <div>Error al cargar</div>;
+    return <div>Error al cargar...</div>;
   }
 
   if (loading) {
@@ -35,7 +34,6 @@ export default function Home() {
   return (
     <>
       <Products data={products} />
-      <ThemeToggle />
     </>
   );
 }

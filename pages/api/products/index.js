@@ -1,15 +1,17 @@
 import { createRouter } from "next-connect";
-import db from "../../utils/database";
-import Product from "../../models/Products";
+import db from "../../../utils/db";
+import Product from "../../../models/Products";
 
 const router = createRouter();
 
 router.get(async (req, res) => {
-  await db.connectToDatabase();
+  //? MONGOOSE FUNCTIONS
+  await db.connect();
   const products = await Product.find({});
-  console.log(products);
-  await db.closeDatabaseConnection(products);
+  //    console.log(products)
+  await db.disconnect(products);
   res.send(products);
+  // res.send()
 });
 
 export default router.handler({

@@ -1,14 +1,16 @@
-// Importar componentes de Chakra UI
+//* IMPORTAR LOS ESTILOS NECESARIOS DE CHAKRA-UI
+import { ChakraProvider } from "@chakra-ui/react";
 import Layout from "../components/Layout";
-import { ChakraProvider, ColorModeScript, theme } from "@chakra-ui/react";
+import { CartProvider } from "../context/CartContext";
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme}>
-      <Layout>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <Component {...pageProps} />
-      </Layout>
+    <ChakraProvider>
+      <CartProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CartProvider>
     </ChakraProvider>
   );
 }

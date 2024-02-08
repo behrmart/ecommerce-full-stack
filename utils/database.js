@@ -14,11 +14,8 @@ async function connectToDatabase() {
       return;
     }
 
-    const db = await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("nueva conexion");
+    const db = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB connected: ${conn.connection.host}`.cyan);
     connection.isConnected = db.connections[0].readyState;
   }
 }
@@ -34,6 +31,14 @@ async function closeDatabaseConnection() {
   }
 }
 
-const db = { connectToDatabase, closeDatabaseConnection };
+function convertDocToObj(doc) {
+  // Transformador de documenteos , objetos en contexto alamacenar en DB
+  doc._id = doc._id.toString(); // conviert valor de _id a String
+  doc.createdAt = doc.createdAt.toString();
+  doc.updatedAt = doc.updatedAt.toString();
+  return doc; //debuelve el objeto modificado
+}
+
+const db = { connectToDatabase, closeDatabaseConnection, convertDocToObj };
 
 export default db;

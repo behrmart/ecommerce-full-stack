@@ -8,9 +8,10 @@ import {
   Button,
   useColorMode,
   useColorModeValue,
-  useBreakpointValue,
+  Link,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import CartIcon from "./CartIcon";
 
 const Layout = ({ children }) => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -18,16 +19,14 @@ const Layout = ({ children }) => {
   return (
     <>
       <Head>
-        <title> FullStack E-commerce App </title>
+        <title> E-commerce App </title>
       </Head>
       <Box>
         {" "}
-        {/* BOX ES COMO UN DIV EN CHAKRA UI */}
+        {/* BOX ES COMO UN DIV EN CHAKRA UI =) */}
         <Flex
-          //   bg={useColorModeValue("white", "gray.600")}
-          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bg={useColorModeValue("white", "gray.600")}
           minH={"60px"}
-          // base toma las unidades en 'em' responsive design
           py={{ base: 2 }}
           px={{ base: 4 }}
           borderTop={1}
@@ -36,13 +35,18 @@ const Layout = ({ children }) => {
           borderColor={useColorModeValue("gray.200", "gray.900")}
           align={"center"}
         >
-          <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-            <Text
-              fontFamily={"heading"}
-              color={useColorModeValue("gray.800", "white")}
-            >
-              Next.JS E-commerce
-            </Text>
+          <Flex flex={{ base: 1 }} justify={{ base: "start", md: "start" }}>
+            {/* passHref permite que el href de la ruta sea pasado al componente hijo
+                  es una forma de hacer referencia a un enlace
+              */}
+            <Link href={"/"} passHref>
+              <Text
+                fontFamily={"heading"}
+                color={useColorModeValue("gray.800", "white")}
+              >
+                Ecommerce
+              </Text>
+            </Link>
           </Flex>
           <Stack
             flex={{ base: 1, md: 0 }}
@@ -53,7 +57,11 @@ const Layout = ({ children }) => {
             <Button onClick={toggleColorMode}>
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
+            <Link href="/cart" passHref>
+              <CartIcon />
+            </Link>
             <Button
+              as={"a"}
               fontSize={"sm"}
               fontWeight={400}
               variant={"link"}
@@ -66,8 +74,8 @@ const Layout = ({ children }) => {
               fontSize={"sm"}
               fontWeight={600}
               color={"white"}
-              href={"#"}
               bg={"pink.400"}
+              href={"#"}
               _hover={{ bg: "pink.300" }}
             >
               Sign up
@@ -75,9 +83,7 @@ const Layout = ({ children }) => {
           </Stack>
         </Flex>
       </Box>
-      <Box py={{ base: 4 }} px={{ base: 4 }}>
-        {children}
-      </Box>
+      {children}
     </>
   );
 };
